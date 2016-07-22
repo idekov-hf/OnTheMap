@@ -27,7 +27,7 @@ class LoginViewController: UIViewController {
 			return
 		}
 		
-		// Disable the UI (start spinning the activity indicator and disable the login button to prevent further clicks while the network request is being processed)
+		// Disable the UI (start spinning the activity indicator and disable the login button to prevent further taps while the network request is being processed)
 		setUIEnabled(false)
 		
 		// Get String values of the user email and password from their respective textFields
@@ -44,6 +44,12 @@ class LoginViewController: UIViewController {
 					self.displayError(errorString)
 				}
 			}
+		}
+	}
+	
+	@IBAction func signUpButtonPressed(sender: UIButton) {
+		if let url = NSURL(string: "https://www.udacity.com/account/auth#!/signup") {
+			UIApplication.sharedApplication().openURL(url)
 		}
 	}
 	
