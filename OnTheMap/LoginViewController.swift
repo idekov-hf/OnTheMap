@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+// TODO: Implement Reachability: failure to connect to internet
 class LoginViewController: UIViewController {
 	
 	// MARK: Outlets
@@ -48,6 +48,7 @@ class LoginViewController: UIViewController {
 	}
 	
 	@IBAction func signUpButtonPressed(sender: UIButton) {
+		// Open the Udacity sign up page in Safari
 		if let url = NSURL(string: "https://www.udacity.com/account/auth#!/signup") {
 			UIApplication.sharedApplication().openURL(url)
 		}
