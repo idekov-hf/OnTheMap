@@ -12,6 +12,12 @@ extension UdacityClient {
     
     // MARK: Methods
     struct Methods {
-        static let PostSession = "https://www.udacity.com/api/session"
+        static let CreateSession = "https://www.udacity.com/api/session"
     }
+	
+	// MARK: JSON Response Keys
+	struct JSONResponseKeys {
+		static let Session = "session"
+		static let SessionID = "id"
+	}
 }

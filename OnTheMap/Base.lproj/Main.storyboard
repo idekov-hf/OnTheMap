@@ -24,7 +24,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login to Udacity" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X7z-pR-dbp">
                                         <rect key="frame" x="0.0" y="0.0" width="560" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gwK-Ze-p9t">
@@ -35,7 +35,7 @@
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jwn-1Y-iVc">
                                         <rect key="frame" x="0.0" y="87" width="560" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="THn-gV-kyI">
                                         <rect key="frame" x="0.0" y="134" width="560" height="30"/>
@@ -48,6 +48,9 @@
                                                 <integer key="value" value="8"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="loginButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3Tm-6g-zLa"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WgQ-pn-bmf">
                                         <rect key="frame" x="0.0" y="182" width="560" height="30"/>
@@ -73,6 +76,11 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="gwK-Ze-p9t" id="AGw-pu-jVF"/>
+                        <outlet property="loginButton" destination="THn-gV-kyI" id="xrm-lb-JuD"/>
+                        <outlet property="passwordTextField" destination="Jwn-1Y-iVc" id="KVb-4I-e8C"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -99,18 +107,11 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="3Iq-Qf-IZN">
-                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
-                            </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="3Iq-Qf-IZN" secondAttribute="trailing" id="0RF-2X-TLe"/>
                             <constraint firstItem="eKt-jh-sMv" firstAttribute="leading" secondItem="gJx-Y4-VWg" secondAttribute="leading" id="8mm-To-qn8"/>
                             <constraint firstAttribute="trailing" secondItem="eKt-jh-sMv" secondAttribute="trailing" id="LMg-PX-VLo"/>
-                            <constraint firstItem="1V4-Kj-EfC" firstAttribute="top" secondItem="3Iq-Qf-IZN" secondAttribute="bottom" id="O2o-l1-DHH"/>
-                            <constraint firstItem="3Iq-Qf-IZN" firstAttribute="leading" secondItem="gJx-Y4-VWg" secondAttribute="leading" id="cYO-U4-zjr"/>
-                            <constraint firstItem="3Iq-Qf-IZN" firstAttribute="top" secondItem="eKt-jh-sMv" secondAttribute="bottom" id="tIq-7G-Kez"/>
                             <constraint firstItem="eKt-jh-sMv" firstAttribute="top" secondItem="Hru-JN-rTd" secondAttribute="bottom" id="utp-GR-4cG"/>
                         </constraints>
                     </view>
@@ -166,7 +167,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="etu-Dx-TGu">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="P7T-xN-2di" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MainTabBarController" automaticallyAdjustsScrollViewInsets="NO" id="P7T-xN-2di" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="724-9o-x3b">
                         <autoresizingMask key="autoresizingMask"/>

@@ -14,6 +14,8 @@
 		5D0514DF1D41BEC2000BDFE2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D0514DD1D41BEC2000BDFE2 /* LaunchScreen.storyboard */; };
 		5D0514EE1D41D99D000BDFE2 /* UdacityClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D0514ED1D41D99D000BDFE2 /* UdacityClient.swift */; };
 		5D41282A1D41DC27007F1272 /* UdacityConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4128291D41DC27007F1272 /* UdacityConstants.swift */; };
+		5D8CBD6B1D4246420079CFD1 /* GCD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8CBD6A1D4246420079CFD1 /* GCD.swift */; };
+		5D8CBD6D1D4246A70079CFD1 /* UdacityConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8CBD6C1D4246A70079CFD1 /* UdacityConvenience.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		5D0514E01D41BEC2000BDFE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5D0514ED1D41D99D000BDFE2 /* UdacityClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityClient.swift; sourceTree = "<group>"; };
 		5D4128291D41DC27007F1272 /* UdacityConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityConstants.swift; sourceTree = "<group>"; };
+		5D8CBD6A1D4246420079CFD1 /* GCD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCD.swift; sourceTree = "<group>"; };
+		5D8CBD6C1D4246A70079CFD1 /* UdacityConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityConvenience.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +63,7 @@
 			isa = PBXGroup;
 			children = (
 				5D0514D41D41BEC2000BDFE2 /* AppDelegate.swift */,
+				5D8CBD6A1D4246420079CFD1 /* GCD.swift */,
 				5D0514E91D41D01E000BDFE2 /* Model */,
 				5D0514E61D41CFB1000BDFE2 /* Controller */,
 				5D0514E71D41CFFB000BDFE2 /* Assets */,
@@ -114,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				5D0514ED1D41D99D000BDFE2 /* UdacityClient.swift */,
+				5D8CBD6C1D4246A70079CFD1 /* UdacityConvenience.swift */,
 				5D4128291D41DC27007F1272 /* UdacityConstants.swift */,
 			);
 			name = Udacity;
@@ -197,10 +203,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D8CBD6B1D4246420079CFD1 /* GCD.swift in Sources */,
 				5D0514D71D41BEC2000BDFE2 /* LoginViewController.swift in Sources */,
 				5D41282A1D41DC27007F1272 /* UdacityConstants.swift in Sources */,
 				5D0514D51D41BEC2000BDFE2 /* AppDelegate.swift in Sources */,
 				5D0514EE1D41D99D000BDFE2 /* UdacityClient.swift in Sources */,
+				5D8CBD6D1D4246A70079CFD1 /* UdacityConvenience.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
