@@ -48,9 +48,6 @@
                                                 <integer key="value" value="8"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <segue destination="P7T-xN-2di" kind="presentation" id="DzK-N8-chl"/>
-                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WgQ-pn-bmf">
                                         <rect key="frame" x="0.0" y="182" width="560" height="30"/>
@@ -79,7 +76,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="33" y="67"/>
+            <point key="canvasLocation" x="-201" y="275"/>
         </scene>
         <!--Map-->
         <scene sceneID="ppb-Lz-V9s">
@@ -121,7 +118,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hL3-oW-pse" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1801" y="204"/>
+            <point key="canvasLocation" x="1215" y="-34"/>
         </scene>
         <!--List-->
         <scene sceneID="Ll6-Jc-f18">
@@ -164,7 +161,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nNm-wo-nRK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1801" y="861"/>
+            <point key="canvasLocation" x="1215" y="623"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="etu-Dx-TGu">
@@ -182,7 +179,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="08V-Qj-0ds" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1087" y="513"/>
+            <point key="canvasLocation" x="501" y="275"/>
         </scene>
     </scenes>
     <resources>
