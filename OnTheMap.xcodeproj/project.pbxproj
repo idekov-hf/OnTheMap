@@ -92,8 +92,32 @@
 		5D0514E91D41D01E000BDFE2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5D0514EA1D41D090000BDFE2 /* Clients */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		5D0514EA1D41D090000BDFE2 /* Clients */ = {
+			isa = PBXGroup;
+			children = (
+				5D0514EB1D41D097000BDFE2 /* Udacity */,
+				5D0514EC1D41D0A1000BDFE2 /* Parse */,
+			);
+			name = Clients;
+			sourceTree = "<group>";
+		};
+		5D0514EB1D41D097000BDFE2 /* Udacity */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Udacity;
+			sourceTree = "<group>";
+		};
+		5D0514EC1D41D0A1000BDFE2 /* Parse */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Parse;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
