@@ -15,6 +15,7 @@ class LoginViewController: UIViewController {
 	@IBOutlet var loginButton: UIButton!
 	@IBOutlet var emailTextField: UITextField!
 	@IBOutlet var passwordTextField: UITextField!
+	@IBOutlet var activityIndicator: UIActivityIndicatorView!
 	
     // MARK: Actions
     
@@ -25,6 +26,8 @@ class LoginViewController: UIViewController {
 			return
 		}
 		
+		setUIEnabled(false)
+		
 		let email = emailTextField.text!
 		let password = passwordTextField.text!
 		
@@ -33,6 +36,7 @@ class LoginViewController: UIViewController {
 				if success {
 					self.completeLogin()
 				} else {
+					self.setUIEnabled(true)
 					self.displayError(errorString)
 				}
 			}
@@ -56,6 +60,12 @@ extension LoginViewController {
 		
 		// adjust login button alpha
 		loginButton.alpha = enabled ? 1.0 : 0.5
+		
+		if enabled {
+			activityIndicator.stopAnimating()
+		} else {
+			activityIndicator.startAnimating()
+		}
 	}
 	
 	private func displayError(errorString: String?) {
@@ -76,6 +86,7 @@ extension LoginViewController {
 	private func textFieldsEmpty() -> Bool {
 		// TODO: Add more conditional cases for when only 1 text field is empty
 		if emailTextField.text == "" && passwordTextField.text == "" {
+			emailTextField.becomeFirstResponder()
 			return false
 		}
 		return true

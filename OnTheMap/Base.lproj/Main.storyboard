@@ -62,13 +62,18 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="iuC-nI-3SA">
+                                <rect key="frame" x="290" y="290" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="iuC-nI-3SA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="09Z-OF-5fx"/>
                             <constraint firstItem="bUJ-UG-6in" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="B0a-AV-5E9"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="bUJ-UG-6in" secondAttribute="bottom" constant="170" id="CEC-13-J1I"/>
                             <constraint firstItem="bUJ-UG-6in" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="aaH-Rg-1Bc"/>
                             <constraint firstItem="bUJ-UG-6in" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="150" id="gjA-yg-Kzn"/>
+                            <constraint firstItem="iuC-nI-3SA" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="xDv-jc-Ifg"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
@@ -77,6 +82,7 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="iuC-nI-3SA" id="LfD-gQ-laB"/>
                         <outlet property="emailTextField" destination="gwK-Ze-p9t" id="AGw-pu-jVF"/>
                         <outlet property="loginButton" destination="THn-gV-kyI" id="xrm-lb-JuD"/>
                         <outlet property="passwordTextField" destination="Jwn-1Y-iVc" id="KVb-4I-e8C"/>
