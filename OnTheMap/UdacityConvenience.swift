@@ -21,7 +21,7 @@ extension UdacityClient {
 				print(sessionID)
 				self.sessionID = sessionID
 			}
-			completionHandlerForAuth(success: success, error: errorString)
+			completionHandlerForAuth(success: success, error: "Invalid Email or Password.")
 		}
 	}
 	

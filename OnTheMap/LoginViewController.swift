@@ -21,16 +21,20 @@ class LoginViewController: UIViewController {
     
 	@IBAction func loginButtonPressed(sender: UIButton) {
 		
+		// Check if either the email or password text fields are empty
 		guard textFieldsEmpty() else {
 			print("Text fields are emtpy")
 			return
 		}
 		
+		// Disable the UI (start spinning the activity indicator and disable the login button to prevent further clicks while the network request is being processed)
 		setUIEnabled(false)
 		
+		// Get String values of the user email and password from their respective textFields
 		let email = emailTextField.text!
 		let password = passwordTextField.text!
 		
+		// Authenticate the user, transition to the MainTabBarController if successfull or display an alert if unsuccessfull
 		UdacityClient.sharedInstance().authenticateWithCredentials(email, password: password) { (success, errorString) in
 			executeBlockOnMainQueue {
 				if success {
@@ -56,37 +60,39 @@ class LoginViewController: UIViewController {
 extension LoginViewController {
 	
 	private func setUIEnabled(enabled: Bool) {
-		loginButton.enabled = enabled
 		
-		// adjust login button alpha
-		loginButton.alpha = enabled ? 1.0 : 0.5
-		
+		// Start / stop spinning activity indicator
 		if enabled {
 			activityIndicator.stopAnimating()
 		} else {
 			activityIndicator.startAnimating()
 		}
+		
+		// Toggle enabled property of the login button
+		loginButton.enabled = enabled
+		// Adjust login button alpha
+		loginButton.alpha = enabled ? 1.0 : 0.5
 	}
 	
 	private func displayError(errorString: String?) {
-		// TODO: Check to see if it is possible to have nil as a title
+		
 		let alertController = UIAlertController(title: nil, message: errorString, preferredStyle: .Alert)
-		let defaultAction = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+		let defaultAction = UIAlertAction(title: "Dismiss", style: .Default, handler: nil)
 		alertController.addAction(defaultAction)
 		presentViewController(alertController, animated: true, completion: nil)
 	}
 	
 }
 
-// MARK: = LoginViewController (UITextField related code)
+// MARK: - LoginViewController (UITextField related code)
 
 extension LoginViewController {
 	
-	// Check if both credential text fields are empty
+	// Check if either credential text fields are empty
 	private func textFieldsEmpty() -> Bool {
 		// TODO: Add more conditional cases for when only 1 text field is empty
-		if emailTextField.text == "" && passwordTextField.text == "" {
-			emailTextField.becomeFirstResponder()
+		if emailTextField.text == "" || passwordTextField.text == "" {
+			displayError("Empty Email or Password.")
 			return false
 		}
 		return true

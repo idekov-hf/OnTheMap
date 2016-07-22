@@ -41,7 +41,7 @@ class UdacityClient: NSObject {
 			func sendError(error: String) {
 				print(error)
 				let userInfo = [NSLocalizedDescriptionKey : error]
-				completionHandlerForPOST(result: nil, error: NSError(domain: "taskForGETMethod", code: 1, userInfo: userInfo))
+				completionHandlerForPOST(result: nil, error: NSError(domain: "taskForPostMethod", code: 1, userInfo: userInfo))
 			}
 			
 			// Was there an error?
