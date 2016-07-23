@@ -41,10 +41,15 @@ extension ParseClient {
         static let Results = "results"
     }
     
-    // MARK: Methods
+    // MARK: Parse Keys
     
-    struct Methods {
-        static let GETStudentLocations = "https://api.parse.com/1/classes/StudentLocation"
+    struct ParseKeys {
+        static let FirstName = "firstName"
+        static let LastName = "lastName"
+        static let Latitude = "latitude"
+        static let Longitude = "longitude"
+        static let MediaURL = "mediaURL"
+        static let UniqueKey = "uniqueKey"
     }
     
     // MARK: Parameter Keys

@@ -15,6 +15,7 @@ class ParseClient {
     // MARK: Properties
     
     let session = NSURLSession.sharedSession()
+    let studentModel = StudentModel.sharedInstance()
     
     // MARK: GET
     
