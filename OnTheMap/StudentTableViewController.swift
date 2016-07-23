@@ -15,8 +15,23 @@ class StudentTableViewController: UIViewController {
 	// MARK: Outlets
 	
 	@IBOutlet var tableView: UITableView!
+    
+    // MARK: Fields
+    
+    var students: [StudentInformation]?
 	
-	
+    // MARK: Lifecycle Methods
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        ParseClient.sharedInstance().getStudentInformation { (studentsInfo) in
+            self.students = studentsInfo
+            executeBlockOnMainQueue {
+                self.tableView.reloadData()
+            }
+        }
+    }
 }
 
 // MARK: - StudentTableViewController (Table View Data Source Methods)
@@ -24,11 +39,13 @@ class StudentTableViewController: UIViewController {
 extension StudentTableViewController: UITableViewDataSource {
 	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		// TODO: return the correct number of rows in section
-		return 0
+        
+		// TODO: make sure the return statement below works
+        return students?.count ?? 0
 	}
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
 		let identifier = "Cell"
 		let cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath)
 		
