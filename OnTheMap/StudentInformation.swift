@@ -16,4 +16,16 @@ struct StudentInformation {
     init(dictionary: [String: AnyObject]) {
         
     }
+    
+    static func studentsFromResults(results: [[String:AnyObject]]) -> [StudentInformation] {
+        
+        var students = [StudentInformation]()
+        
+        // iterate through array of dictionaries, each student is a dictionary
+        for result in results {
+            students.append(StudentInformation(dictionary: result))
+        }
+        
+        return students
+    }
 }

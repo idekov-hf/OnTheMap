@@ -12,26 +12,33 @@ import Foundation
 
 extension ParseClient {
     
-    func getStudentInformation(completionHandlerForStudentInfo: (studentInfo: [StudentInformation]) -> Void) {
+    func getStudentInformation(completionHandlerForStudentInfo: (error: NSError?) -> Void) {
         
         // Set parameters
         let parameters = [
             ParameterKeys.limit: ParameterValues.limit,
             ParameterKeys.order: ParameterValues.order
         ]
-        let method = Methods.GETStudentLocations
         
-        // Make network response
-        taskForGETMethod(method, parameters: parameters) { (results) in
+        // Get data
+        taskForGETMethod(parameters) { (result, error) in
             
-            
+            if let error = error {
+                
+                completionHandlerForStudentInfo(error: error)
+            } else {
+                
+                if let results = result[JSONResponseKeys.Results] as? [[String: AnyObject]] {
+                    
+                    let students = StudentInformation.studentsFromResults(results)
+                    StudentModel.sharedInstance().students = students
+                    completionHandlerForStudentInfo(error: nil)
+                    
+                } else {
+                    
+                    completionHandlerForStudentInfo(error: NSError(domain: "getStudentInformation parsing", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not parse getStudentInformation"]))
+                }
+            }
         }
-        
-        
-        // Parse results
-        
-        
-        // Call completion handler
-        completionHandlerForStudentInfo(studentInfo: studentInfo)
     }
 }

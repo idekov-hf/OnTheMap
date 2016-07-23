@@ -18,9 +18,11 @@ class ParseClient {
     
     // MARK: GET
     
-    func taskForGETMethod(method: String, parameters: [String: String], completionHandlerForGET: (result: AnyObject?, error: NSError?) -> Void) {
+    func taskForGETMethod(parameters: [String: String], completionHandlerForGET: (result: AnyObject!, error: NSError?) -> Void) {
         
         let request = NSMutableURLRequest(URL: createURLFromParameters(parameters))
+        request.addValue(Constants.ParseApplicationID, forHTTPHeaderField: HTTPHeaders.ParseApplicationID)
+        request.addValue(Constants.RestAPIKey, forHTTPHeaderField: HTTPHeaders.RestAPIKey)
         
         let task = session.dataTaskWithRequest(request) { (data, response, error) in
             
@@ -48,7 +50,7 @@ class ParseClient {
                 return
             }
             
-            /* 5/6. Parse the data and use the data (happens in completion handler) */
+            // Parse the data and use the data (happens in completion handler)
             self.convertDataWithCompletionHandler(data, completionHandlerForConvertData: completionHandlerForGET)
         }
         task.resume()

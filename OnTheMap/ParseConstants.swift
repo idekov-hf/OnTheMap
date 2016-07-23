@@ -15,14 +15,30 @@ extension ParseClient {
     // MARK: Constants
     
     struct Constants {
+        
         // MARK: Keys
+        
         static let ParseApplicationID = "QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr"
         static let RestAPIKey = "QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY"
         
         // MARK: URLS
+        
         static let APIScheme = "https"
         static let APIHost = "api.parse.com"
         static let APIPath = "/1/classes/StudentLocation"
+    }
+    
+    // MARK: Headers
+    
+    struct HTTPHeaders {
+        static let ParseApplicationID = "X-Parse-Application-Id"
+        static let RestAPIKey = "X-Parse-REST-API-Key"
+    }
+    
+    // MARK: JSON Response Keys
+    
+    struct JSONResponseKeys {
+        static let Results = "results"
     }
     
     // MARK: Methods

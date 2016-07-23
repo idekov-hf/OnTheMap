@@ -15,18 +15,13 @@ class StudentTableViewController: UIViewController {
 	// MARK: Outlets
 	
 	@IBOutlet var tableView: UITableView!
-    
-    // MARK: Fields
-    
-    var students: [StudentInformation]?
 	
     // MARK: Lifecycle Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        ParseClient.sharedInstance().getStudentInformation { (studentsInfo) in
-            self.students = studentsInfo
+        ParseClient.sharedInstance().getStudentInformation { (studentsInfo, error) in
             executeBlockOnMainQueue {
                 self.tableView.reloadData()
             }
