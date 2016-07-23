@@ -115,8 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				5D0514EA1D41D090000BDFE2 /* Clients */,
-				5D78F8D21D439B930073B5CA /* StudentInformation.swift */,
-				5D78F8DA1D43C5D50073B5CA /* StudentModel.swift */,
+				5D78F8DC1D43C7B50073B5CA /* Data */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -148,6 +147,15 @@
 				5D78F8D81D439FE00073B5CA /* ParseConvenience.swift */,
 			);
 			name = Parse;
+			sourceTree = "<group>";
+		};
+		5D78F8DC1D43C7B50073B5CA /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				5D78F8D21D439B930073B5CA /* StudentInformation.swift */,
+				5D78F8DA1D43C5D50073B5CA /* StudentModel.swift */,
+			);
+			name = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -21,9 +21,15 @@ class StudentTableViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        ParseClient.sharedInstance().getStudentInformation { (studentsInfo, error) in
-            executeBlockOnMainQueue {
-                self.tableView.reloadData()
+        ParseClient.sharedInstance().getStudentInformation { (error) in
+            
+            if error == nil {
+                executeBlockOnMainQueue {
+                    self.tableView.reloadData()
+                }
+            } else {
+                // TODO: Handle error
+                print(error)
             }
         }
     }
@@ -36,7 +42,7 @@ extension StudentTableViewController: UITableViewDataSource {
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
 		// TODO: make sure the return statement below works
-        return students?.count ?? 0
+        return StudentModel.sharedInstance().students?.count ?? 0
 	}
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
