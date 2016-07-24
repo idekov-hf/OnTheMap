@@ -11,6 +11,7 @@ import Foundation
 class StudentModel {
     
     // MARK: Properties
+    
     var students: [StudentInformation]?
     
     // MARK: Shared Instance

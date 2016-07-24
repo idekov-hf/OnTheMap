@@ -12,21 +12,21 @@ struct StudentInformation {
     
     // MARK: Properties
     
-    var firstName: String?
-    var lastName: String?
-    var latitude: Float?
-    var longitude: Float?
-    var mediaURL: String?
+    var firstName: String
+    var lastName: String
+    var latitude: Float
+    var longitude: Float
+    var mediaURL: String
     
     // MARK: Initializers
     
     init(dictionary: [String: AnyObject]) {
         
-        firstName = dictionary[ParseClient.ParseKeys.FirstName] as? String
-        lastName = dictionary[ParseClient.ParseKeys.LastName] as? String
-        latitude = dictionary[ParseClient.ParseKeys.Latitude] as? Float
-        longitude = dictionary[ParseClient.ParseKeys.Longitude] as? Float
-        mediaURL = dictionary[ParseClient.ParseKeys.MediaURL] as? String
+        firstName = dictionary[ParseClient.ParseKeys.FirstName] as! String
+        lastName = dictionary[ParseClient.ParseKeys.LastName] as! String
+        latitude = dictionary[ParseClient.ParseKeys.Latitude] as! Float
+        longitude = dictionary[ParseClient.ParseKeys.Longitude] as! Float
+        mediaURL = dictionary[ParseClient.ParseKeys.MediaURL] as! String
     }
     
     // Mark: Helpers

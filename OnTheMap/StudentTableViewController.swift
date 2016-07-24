@@ -23,13 +23,18 @@ class StudentTableViewController: UIViewController {
         
         ParseClient.sharedInstance().getStudentInformation { (error) in
             
-            if error == nil {
-                executeBlockOnMainQueue {
+            executeBlockOnMainQueue {
+                if error == nil {
+                    
                     self.tableView.reloadData()
+                    
+                } else {
+                    // TODO: Handle error
+                    let alertController = UIAlertController(title: nil, message: "Download of Data Failed.", preferredStyle: .Alert)
+                    let action = UIAlertAction(title: "Dismiss", style: .Default, handler: nil)
+                    alertController.addAction(action)
+                    self.presentViewController(alertController, animated: true, completion: nil)
                 }
-            } else {
-                // TODO: Handle error
-                print(error)
             }
         }
     }
@@ -50,8 +55,27 @@ extension StudentTableViewController: UITableViewDataSource {
 		let identifier = "Cell"
 		let cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath)
 		
-		// TODO: Configure cell view
+        if let studentInfo = StudentModel.sharedInstance().students?[indexPath.row] {
+            cell.textLabel?.text = studentInfo.firstName + " " + studentInfo.lastName
+            cell.detailTextLabel?.text = studentInfo.mediaURL
+            cell.imageView?.image = UIImage(named: "pin")
+        }
 		
 		return cell
 	}
+}
+
+// MARK: - StudentTableViewController (Table View Delegate Methods)
+
+extension StudentTableViewController: UITableViewDelegate {
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        if let studentInfo = StudentModel.sharedInstance().students?[indexPath.row] {
+            
+            if let url = NSURL(string: studentInfo.mediaURL) {
+                UIApplication.sharedApplication().openURL(url)
+            }
+        }
+    }
 }
