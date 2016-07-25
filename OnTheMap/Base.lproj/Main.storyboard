@@ -19,27 +19,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="bUJ-UG-6in">
-                                <rect key="frame" x="20" y="170" width="560" height="260"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="bUJ-UG-6in">
+                                <rect key="frame" x="20" y="173" width="560" height="255"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login to Udacity" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X7z-pR-dbp">
-                                        <rect key="frame" x="0.0" y="0.0" width="560" height="21"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="560" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gwK-Ze-p9t">
-                                        <rect key="frame" x="0.0" y="39" width="560" height="30"/>
+                                        <rect key="frame" x="0.0" y="45" width="560" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jwn-1Y-iVc">
-                                        <rect key="frame" x="0.0" y="87" width="560" height="30"/>
+                                        <rect key="frame" x="0.0" y="90" width="560" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="THn-gV-kyI">
-                                        <rect key="frame" x="0.0" y="134" width="560" height="30"/>
+                                        <rect key="frame" x="0.0" y="135" width="560" height="30"/>
                                         <color key="backgroundColor" red="0.21176470588235294" green="0.90980392156862744" blue="0.51372549019607838" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="Login">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -54,14 +54,14 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WgQ-pn-bmf">
-                                        <rect key="frame" x="0.0" y="182" width="560" height="30"/>
+                                        <rect key="frame" x="0.0" y="180" width="560" height="30"/>
                                         <state key="normal" title="Don't have an account? Sign Up"/>
                                         <connections>
                                             <action selector="signUpButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZCB-Jn-yjn"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nnD-B9-8ha">
-                                        <rect key="frame" x="0.0" y="230" width="560" height="30"/>
+                                        <rect key="frame" x="0.0" y="225" width="560" height="30"/>
                                         <state key="normal" title="Log in with Facebook"/>
                                     </button>
                                 </subviews>
@@ -74,9 +74,8 @@
                         <constraints>
                             <constraint firstItem="iuC-nI-3SA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="09Z-OF-5fx"/>
                             <constraint firstItem="bUJ-UG-6in" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="B0a-AV-5E9"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="bUJ-UG-6in" secondAttribute="bottom" constant="170" id="CEC-13-J1I"/>
                             <constraint firstItem="bUJ-UG-6in" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="aaH-Rg-1Bc"/>
-                            <constraint firstItem="bUJ-UG-6in" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="150" id="gjA-yg-Kzn"/>
+                            <constraint firstItem="bUJ-UG-6in" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="v5O-pV-Sog"/>
                             <constraint firstItem="iuC-nI-3SA" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="xDv-jc-Ifg"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
@@ -127,7 +126,11 @@
                         <barButtonItem key="leftBarButtonItem" title="Logout" id="gld-34-3WY"/>
                         <rightBarButtonItems>
                             <barButtonItem title="Refresh" id="6zz-nG-2ZU"/>
-                            <barButtonItem image="pin" id="wdr-Nd-ZFt"/>
+                            <barButtonItem image="pin" id="wdr-Nd-ZFt">
+                                <connections>
+                                    <segue destination="Fb3-Fs-gs9" kind="presentation" id="u1H-dX-gci"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
@@ -137,6 +140,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hL3-oW-pse" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2027" y="-34"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="EAA-zr-r47">
+            <objects>
+                <viewController id="Fb3-Fs-gs9" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dD2-T0-A6W"/>
+                        <viewControllerLayoutGuide type="bottom" id="zO8-Ps-1HQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7yk-k3-V2D">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JA7-dB-m0R" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2743" y="275"/>
         </scene>
         <!--On The Map-->
         <scene sceneID="Ll6-Jc-f18">
@@ -197,7 +218,11 @@
                         <barButtonItem key="leftBarButtonItem" title="Logout" id="wgl-O9-13M"/>
                         <rightBarButtonItems>
                             <barButtonItem title="Refresh" id="Vxm-wd-rJ7"/>
-                            <barButtonItem image="pin" id="6EO-X6-J7Z"/>
+                            <barButtonItem image="pin" id="6EO-X6-J7Z">
+                                <connections>
+                                    <segue destination="Fb3-Fs-gs9" kind="presentation" id="1WK-Lc-9Io"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
@@ -270,4 +295,7 @@
         <image name="map" width="32" height="32"/>
         <image name="pin" width="32" height="32"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="1WK-Lc-9Io"/>
+    </inferredMetricsTieBreakers>
 </document>
