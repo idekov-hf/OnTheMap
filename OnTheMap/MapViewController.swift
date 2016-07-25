@@ -96,6 +96,8 @@ extension MapViewController: MKMapViewDelegate {
 	}
 }
 
+// MARK: TabViewControllersDelegate
+
 protocol TabViewControllersDelegate: class {
 	func dismissTabBarController()
 }

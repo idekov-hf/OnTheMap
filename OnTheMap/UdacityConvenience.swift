@@ -18,7 +18,7 @@ extension UdacityClient {
 		
 		getSessionID(email, password: password) { (success, sessionID, errorString) in
 			if success {
-				
+				print(sessionID)
 				self.sessionID = sessionID
 			}
 			
@@ -26,7 +26,7 @@ extension UdacityClient {
 		}
 	}
 	
-	// MARK: Get Session ID Method
+	// MARK: Get Session ID Method (used when logging in)
 	
 	private func getSessionID(email: String, password: String, completionHandlerForSession: (success: Bool, sessionID: String?, errorString: String?) -> Void) {
 		
@@ -50,6 +50,25 @@ extension UdacityClient {
 					print("Could not find \(JSONResponseKeys.SessionID) in \(results)")
 					completionHandlerForSession(success: false, sessionID: nil, errorString: "Login Failed (Session ID).")
 				}
+			}
+		}
+	}
+	
+	// MARK: Delete Session ID Method (used when logging out)
+	
+	func deleteSessionID() {
+		
+		let method = UdacityClient.Methods.DeleteSession
+		
+		taskForDELETEMethod(method) { (result, error) in
+			
+			if let error = error {
+				
+				print(error)
+				
+			} else {
+				
+				print(result)
 			}
 		}
 	}

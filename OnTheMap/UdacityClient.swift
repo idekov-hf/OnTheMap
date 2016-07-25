@@ -56,7 +56,9 @@ class UdacityClient: NSObject {
 		
 		for cookie in sharedCookieStorage.cookies! {
 			
-			if cookie.name == "XSRF-TOKEN" { xsrfCookie = cookie }
+			if cookie.name == "XSRF-TOKEN" {
+				xsrfCookie = cookie
+			}
 		}
 		
 		if let xsrfCookie = xsrfCookie {
@@ -80,7 +82,7 @@ class UdacityClient: NSObject {
 		func sendError(error: String) {
 			print(error)
 			let userInfo = [NSLocalizedDescriptionKey : error]
-			completionHandlerForDataExtraction(result: nil, error: NSError(domain: "taskForPOSTMethod", code: 1, userInfo: userInfo))
+			completionHandlerForDataExtraction(result: nil, error: NSError(domain: "UdacityClient", code: 1, userInfo: userInfo))
 		}
 		
 		// Was there an error?

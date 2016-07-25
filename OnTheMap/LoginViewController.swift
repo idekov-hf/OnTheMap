@@ -123,6 +123,7 @@ extension LoginViewController {
 extension LoginViewController: TabViewControllersDelegate {
 	
 	func dismissTabBarController() {
+		UdacityClient.sharedInstance().deleteSessionID()
 		mainTabBarController?.dismissViewControllerAnimated(true, completion: nil)
 	}
 }
