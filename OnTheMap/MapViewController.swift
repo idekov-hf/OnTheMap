@@ -13,8 +13,13 @@ import MapKit
 
 class MapViewController: UIViewController {
 	
+	// MARK: Outlets
 	@IBOutlet var mapView: MKMapView!
 	
+	// MARK: Properties
+	weak var delegate: TabViewControllersDelegate?
+	
+	// MARK: Lifecycle Methods
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
@@ -31,6 +36,12 @@ class MapViewController: UIViewController {
 				}
 			}
 		}
+	}
+	
+	// MARK: Actions
+	
+	@IBAction func logoutButtonPressed(sender: UIBarButtonItem) {
+		delegate?.dismissTabBarController()
 	}
 	
 	// MARK: Helper Methods
@@ -83,4 +94,8 @@ extension MapViewController: MKMapViewDelegate {
 			}
 		}
 	}
+}
+
+protocol TabViewControllersDelegate: class {
+	func dismissTabBarController()
 }

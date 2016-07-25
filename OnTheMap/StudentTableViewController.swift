@@ -16,6 +16,10 @@ class StudentTableViewController: UIViewController {
 	
 	@IBOutlet var tableView: UITableView!
 	
+	// MARK: Fields
+	
+	weak var delegate: TabViewControllersDelegate?
+	
 	// MARK: Helper Methods
 	
 	private func displayError(errorString: String?) {
@@ -25,6 +29,12 @@ class StudentTableViewController: UIViewController {
 		alertController.addAction(defaultAction)
 		presentViewController(alertController, animated: true, completion: nil)
 	}
+	
+	// MARK: Actions
+	@IBAction func logoutButtonPressed(sender: UIBarButtonItem) {
+		delegate?.dismissTabBarController()
+	}
+	
 }
 
 // MARK: - StudentTableViewController (Table View Data Source Methods)

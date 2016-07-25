@@ -123,7 +123,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="On The Map" id="aRb-2q-wnx">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="gld-34-3WY"/>
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="gld-34-3WY">
+                            <connections>
+                                <action selector="logoutButtonPressed:" destination="Hpk-h6-d09" id="neL-Us-tor"/>
+                            </connections>
+                        </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem title="Refresh" id="6zz-nG-2ZU"/>
                             <barButtonItem image="pin" id="wdr-Nd-ZFt">
@@ -215,7 +219,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="On The Map" id="Plw-KQ-nhg">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="wgl-O9-13M"/>
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="wgl-O9-13M">
+                            <connections>
+                                <action selector="logoutButtonPressed:" destination="cQf-16-ggs" id="myE-I2-YDZ"/>
+                            </connections>
+                        </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem title="Refresh" id="Vxm-wd-rJ7"/>
                             <barButtonItem image="pin" id="6EO-X6-J7Z">

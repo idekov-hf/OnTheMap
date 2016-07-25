@@ -17,6 +17,10 @@ class LoginViewController: UIViewController {
 	@IBOutlet var passwordTextField: UITextField!
 	@IBOutlet var activityIndicator: UIActivityIndicatorView!
 	
+	// MARK: Fields
+	
+	var mainTabBarController: UITabBarController!
+	
     // MARK: Actions
     
 	@IBAction func loginButtonPressed(sender: UIButton) {
@@ -57,8 +61,16 @@ class LoginViewController: UIViewController {
 	// MARK: Login
 	
 	private func completeLogin() {
-		let controller = storyboard!.instantiateViewControllerWithIdentifier("MainTabBarController") as! UITabBarController
-		presentViewController(controller, animated: true, completion: nil)
+		mainTabBarController = storyboard!.instantiateViewControllerWithIdentifier("MainTabBarController") as! UITabBarController
+		
+		let mapNavigationController = mainTabBarController.viewControllers![0] as! UINavigationController
+		let tableNavigationController = mainTabBarController.viewControllers![1] as! UINavigationController
+		
+		(mapNavigationController.viewControllers[0] as! MapViewController).delegate = self
+		(tableNavigationController.viewControllers[0] as! StudentTableViewController).delegate = self
+		
+		presentViewController(mainTabBarController, animated: true, completion: nil)
+		setUIEnabled(true)
 	}
 }
 
@@ -103,5 +115,14 @@ extension LoginViewController {
 			return false
 		}
 		return true
+	}
+}
+
+// MARK: TabViewControllerDelegate (used to dismiss the TabBarController)
+
+extension LoginViewController: TabViewControllersDelegate {
+	
+	func dismissTabBarController() {
+		mainTabBarController?.dismissViewControllerAnimated(true, completion: nil)
 	}
 }
