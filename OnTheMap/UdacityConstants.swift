@@ -13,6 +13,7 @@ extension UdacityClient {
     // MARK: Methods
     struct Methods {
         static let CreateSession = "https://www.udacity.com/api/session"
+		static let DeleteSession = "https://www.udacity.com/api/session"
     }
 	
 	// MARK: JSON Response Keys

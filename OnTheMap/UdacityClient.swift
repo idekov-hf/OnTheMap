@@ -38,39 +38,75 @@ class UdacityClient: NSObject {
         
         let task = session.dataTaskWithRequest(request) { (data, response, error) in
 			
-			func sendError(error: String) {
-				print(error)
-				let userInfo = [NSLocalizedDescriptionKey : error]
-				completionHandlerForPOST(result: nil, error: NSError(domain: "taskForPostMethod", code: 1, userInfo: userInfo))
-			}
-			
-			// Was there an error?
-			guard error == nil else {
-				sendError("There was an error with your request: \(error)")
-				return
-			}
-			
-			// Did the response have a successfull status code?
-			guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode < 300 else {
-				sendError("Request returned wrong statusCode")
-				return
-			}
-			
-			// Was there any data returned?
-			guard let data = data else {
-				sendError("No data was returned by the request!")
-				return
-			}
-			
-			// NEED TO SKIP THE FIRST 5 CHARACTERS FOR ALL RESPONSES FROM THE UDACITY API
-			let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5)) /* subset response data! */
-			
-			// Parse the data and use the data (happens in completion handler)
-			self.convertDataWithCompletionHandler(newData, completionHandlerForConvertData: completionHandlerForPOST)
+			self.checkAndExtractDataWithCompletionHandler(data, response: response, error: error, completionHandlerForDataExtraction: completionHandlerForPOST)
 		}
 		
 		task.resume()
     }
+	
+	// MARK: DELETE
+	
+	func taskForDELETEMethod(method: String, completionHandlerForDELETE: (result: AnyObject!, error: NSError?) -> Void) {
+		
+		let request = NSMutableURLRequest(URL: NSURL(string: method)!)
+		request.HTTPMethod = "DELETE"
+		
+		var xsrfCookie: NSHTTPCookie? = nil
+		let sharedCookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
+		
+		for cookie in sharedCookieStorage.cookies! {
+			
+			if cookie.name == "XSRF-TOKEN" { xsrfCookie = cookie }
+		}
+		
+		if let xsrfCookie = xsrfCookie {
+			
+			request.setValue(xsrfCookie.value, forHTTPHeaderField: "X-XSRF-TOKEN")
+		}
+		
+		let task = session.dataTaskWithRequest(request) { (data, response, error) in
+			
+			self.checkAndExtractDataWithCompletionHandler(data, response: response, error: error, completionHandlerForDataExtraction: completionHandlerForDELETE)
+		}
+		
+		task.resume()
+	}
+	
+	// MARK: Helper Methods
+	
+	func checkAndExtractDataWithCompletionHandler(data: NSData?, response: NSURLResponse?, error: NSError?, completionHandlerForDataExtraction: (result: AnyObject!, error: NSError?) -> Void) {
+		
+		// Used for handling errors
+		func sendError(error: String) {
+			print(error)
+			let userInfo = [NSLocalizedDescriptionKey : error]
+			completionHandlerForDataExtraction(result: nil, error: NSError(domain: "taskForPOSTMethod", code: 1, userInfo: userInfo))
+		}
+		
+		// Was there an error?
+		guard error == nil else {
+			sendError("There was an error with your request: \(error)")
+			return
+		}
+		
+		// Did the response have a successfull status code?
+		guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode < 300 else {
+			sendError("Request returned wrong statusCode")
+			return
+		}
+		
+		// Was there any data returned?
+		guard let data = data else {
+			sendError("No data was returned by the request!")
+			return
+		}
+		
+		// NEED TO SKIP THE FIRST 5 CHARACTERS FOR ALL RESPONSES FROM THE UDACITY API
+		let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5))
+		
+		// Parse the data and use the data (happens in completion handler)
+		self.convertDataWithCompletionHandler(newData, completionHandlerForConvertData: completionHandlerForDataExtraction)
+	}
 	
 	// given raw JSON, return a usable Foundation object
 	// Method taken from TheMovieManager app from the Udacity course iOS Networking With Swift
