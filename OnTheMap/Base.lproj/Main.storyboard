@@ -99,7 +99,7 @@
         <!--On The Map-->
         <scene sceneID="ppb-Lz-V9s">
             <objects>
-                <viewController id="Hpk-h6-d09" sceneMemberID="viewController">
+                <viewController id="Hpk-h6-d09" customClass="MapViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Hru-JN-rTd"/>
                         <viewControllerLayoutGuide type="bottom" id="1V4-Kj-EfC"/>
@@ -107,7 +107,21 @@
                     <view key="view" contentMode="scaleToFill" id="gJx-Y4-VWg">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="j3f-qv-QlQ">
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Hpk-h6-d09" id="8El-5P-bFT"/>
+                                </connections>
+                            </mapView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="j3f-qv-QlQ" secondAttribute="trailing" id="HsW-td-bj0"/>
+                            <constraint firstItem="1V4-Kj-EfC" firstAttribute="top" secondItem="j3f-qv-QlQ" secondAttribute="bottom" id="gmb-zu-3Jd"/>
+                            <constraint firstItem="j3f-qv-QlQ" firstAttribute="top" secondItem="Hru-JN-rTd" secondAttribute="bottom" id="qOK-WW-Cb0"/>
+                            <constraint firstItem="j3f-qv-QlQ" firstAttribute="leading" secondItem="gJx-Y4-VWg" secondAttribute="leading" id="we3-9e-SkM"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="On The Map" id="aRb-2q-wnx">
                         <barButtonItem key="leftBarButtonItem" title="Logout" id="gld-34-3WY"/>
@@ -116,6 +130,9 @@
                             <barButtonItem image="pin" id="wdr-Nd-ZFt"/>
                         </rightBarButtonItems>
                     </navigationItem>
+                    <connections>
+                        <outlet property="mapView" destination="j3f-qv-QlQ" id="CVV-gI-Hwo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hL3-oW-pse" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

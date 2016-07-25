@@ -16,28 +16,15 @@ class StudentTableViewController: UIViewController {
 	
 	@IBOutlet var tableView: UITableView!
 	
-    // MARK: Lifecycle Methods
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        ParseClient.sharedInstance().getStudentInformation { (error) in
-            
-            executeBlockOnMainQueue {
-                if error == nil {
-                    
-                    self.tableView.reloadData()
-                    
-                } else {
-                    // TODO: Handle error
-                    let alertController = UIAlertController(title: nil, message: "Download of Data Failed.", preferredStyle: .Alert)
-                    let action = UIAlertAction(title: "Dismiss", style: .Default, handler: nil)
-                    alertController.addAction(action)
-                    self.presentViewController(alertController, animated: true, completion: nil)
-                }
-            }
-        }
-    }
+	// MARK: Helper Methods
+	
+	private func displayError(errorString: String?) {
+		
+		let alertController = UIAlertController(title: nil, message: errorString, preferredStyle: .Alert)
+		let defaultAction = UIAlertAction(title: "Dismiss", style: .Default, handler: nil)
+		alertController.addAction(defaultAction)
+		presentViewController(alertController, animated: true, completion: nil)
+	}
 }
 
 // MARK: - StudentTableViewController (Table View Data Source Methods)

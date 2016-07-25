@@ -31,8 +31,10 @@ extension ParseClient {
                 if let results = result[JSONResponseKeys.Results] as? [[String: AnyObject]] {
                     
                     let students = StudentInformation.studentsFromResults(results)
+					let annotations = StudentModel.annotationsFromStudents(students)
                     // Save the results in a separate model class
                     self.studentModel.students = students
+					self.studentModel.annotations = annotations
                     completionHandlerForStudentInfo(error: nil)
                     
                 } else {
