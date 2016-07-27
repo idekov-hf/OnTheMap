@@ -14,9 +14,14 @@ struct StudentInformation {
     
     var firstName: String
     var lastName: String
-    var latitude: Float
-    var longitude: Float
+    var latitude: Double
+    var longitude: Double
     var mediaURL: String
+	
+	// Properties used for uploading student locations
+	
+	var uniqueKey: String?
+	var mapString: String?
     
     // MARK: Initializers
     
@@ -24,10 +29,18 @@ struct StudentInformation {
         
         firstName = dictionary[ParseClient.ParseKeys.FirstName] as! String
         lastName = dictionary[ParseClient.ParseKeys.LastName] as! String
-        latitude = dictionary[ParseClient.ParseKeys.Latitude] as! Float
-        longitude = dictionary[ParseClient.ParseKeys.Longitude] as! Float
+        latitude = dictionary[ParseClient.ParseKeys.Latitude] as! Double
+        longitude = dictionary[ParseClient.ParseKeys.Longitude] as! Double
         mediaURL = dictionary[ParseClient.ParseKeys.MediaURL] as! String
     }
+	
+	init() {
+		firstName = String()
+		lastName = String()
+		latitude = Double()
+		longitude = Double()
+		mediaURL = String()
+	}
     
     // Mark: Helpers
     

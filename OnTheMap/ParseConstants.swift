@@ -27,12 +27,22 @@ extension ParseClient {
         static let APIHost = "api.parse.com"
         static let APIPath = "/1/classes/StudentLocation"
     }
-    
+	
+	// MARK: Methods
+	
+	struct Methods {
+		
+		static let PostStudentLocation = "https://api.parse.com/1/classes/StudentLocation"
+	}
+	
     // MARK: Headers
     
     struct HTTPHeaders {
+		
         static let ParseApplicationID = "X-Parse-Application-Id"
         static let RestAPIKey = "X-Parse-REST-API-Key"
+		static let ContentType = "Content-Type"
+		static let ApplicationJSON = "application/json"
     }
     
     // MARK: JSON Response Keys

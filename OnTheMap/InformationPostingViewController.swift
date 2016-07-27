@@ -20,6 +20,23 @@ class InformationPostingViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var locationTextField: UITextField!
     @IBOutlet weak var linkTextField: UITextField!
+	@IBOutlet var activityIndicator: UIActivityIndicatorView!
+	@IBOutlet var submitLinkButton: UIButton!
+	
+	
+	// MARK: Fields
+	
+	var studentInformation = StudentInformation()
+	
+	// MARK: Lifecycle
+	
+	override func viewDidLoad() {
+		super.viewDidLoad()
+
+		self.studentInformation.firstName = ""
+		self.studentInformation.lastName = ""
+		self.studentInformation.uniqueKey = ""
+	}
     
     // MARK: Actions
     
@@ -29,27 +46,96 @@ class InformationPostingViewController: UIViewController {
 	}
 	
     @IBAction func findOnMapButtonPressed(sender: UIButton) {
-        
+		
+		guard let locationText = locationTextField.text where locationText != "" else {
+			displayError("Must Enter a Location.")
+			return
+		}
+		
+		studentInformation.mapString = locationText
+		
         firstView.hidden = true
         
         let geocoder = CLGeocoder()
-        geocoder.geocodeAddressString(locationTextField.text!) { (placemark, error) in
+        geocoder.geocodeAddressString(locationText) { (placemark, error) in
+			
             if let error = error {
                 
                 print(error)
+				self.displayError("Location not Found; Please Try Again.")
                 
             } else {
-                
-                print(placemark![0].location?.coordinate)
-                let coordinate = placemark![0].location?.coordinate
+				
+                let coordinate = placemark![0].location!.coordinate
+				
+				self.studentInformation.latitude = coordinate.latitude
+				self.studentInformation.longitude = coordinate.longitude
                 
                 var annotations = [MKPointAnnotation]()
                 let annotation = MKPointAnnotation()
-                annotation.coordinate = coordinate!
+                annotation.coordinate = coordinate
                 annotations.append(annotation)
                 
                 self.mapView.showAnnotations(annotations, animated: true)
             }
         }
     }
+	
+	@IBAction func submitButtonPressed(sender: UIButton) {
+		
+		if linkTextField.text! == "" {
+			
+			displayError("Must Enter a Link.")
+			
+		} else {
+			
+			studentInformation.mediaURL = linkTextField.text!
+			
+			setUIEnabled(false)
+			
+			ParseClient.sharedInstance().postStudentInformation(studentInformation) { (error) in
+				
+				executeBlockOnMainQueue({
+					
+					self.setUIEnabled(true)
+					
+					if let error = error {
+						
+						self.displayError(error)
+						
+					} else {
+						
+						self.dismissViewControllerAnimated(true, completion: nil)
+					}
+				})
+			}
+		}
+	}
+	
+	// MARK: Helper Methods
+	
+	private func displayError(errorString: String?) {
+		
+		let alertController = UIAlertController(title: nil, message: errorString, preferredStyle: .Alert)
+		let defaultAction = UIAlertAction(title: "Dismiss", style: .Default, handler: nil)
+		alertController.addAction(defaultAction)
+		presentViewController(alertController, animated: true, completion: nil)
+	}
+	
+	func setUIEnabled(bool: Bool) {
+		
+		bool ? activityIndicator.stopAnimating() : activityIndicator.startAnimating()
+		
+		submitLinkButton.enabled = bool
+	}
+}
+
+// MARK: - InformationPostingViewController (UITextFieldDelegate)
+
+extension InformationPostingViewController: UITextFieldDelegate {
+
+	func textFieldShouldReturn(textField: UITextField) -> Bool {
+		textField.resignFirstResponder()
+		return true
+	}
 }

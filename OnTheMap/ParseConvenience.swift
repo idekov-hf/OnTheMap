@@ -44,4 +44,27 @@ extension ParseClient {
             }
         }
     }
+	
+	// MARK: POST a StudentLocation
+	
+	func postStudentInformation(studentInformation: StudentInformation, completionHandlerForStudenInformation: (error: String?) -> Void) {
+		
+		let method = Methods.PostStudentLocation
+//		let jsonBody = "{\"uniqueKey\": \"\(studentInformation.uniqueKey)\", \"firstName\": \"\(studentInformation.firstName)\", \"lastName\": \"\(studentInformation.lastName)\",\"mapString\": \"\(studentInformation.mapString)\", \"mediaURL\": \"\(studentInformation.mediaURL)\",\"latitude\": \(studentInformation.latitude), \"longitude\": \(studentInformation.longitude)}"
+		let jsonBody = "{\"uniqueKey\": \"1234\", \"firstName\": \"John\", \"lastName\": \"Doe\",\"mapString\": \"Mountain View, CA\", \"mediaURL\": \"https://udacity.com\",\"latitude\": \(studentInformation.latitude), \"longitude\": \(studentInformation.longitude)}"
+		
+		taskForPOSTMethod(method, jsonBody: jsonBody) { (result, error) in
+			
+			if error != nil {
+				
+				print(error)
+				completionHandlerForStudenInformation(error: "Post Failed: Please Try Again.")
+				
+			} else {
+				
+				print(result)
+				completionHandlerForStudenInformation(error: nil)
+			}
+		}
+	}
 }

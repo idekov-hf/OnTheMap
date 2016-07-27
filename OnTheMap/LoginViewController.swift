@@ -105,7 +105,7 @@ extension LoginViewController {
 
 // MARK: - LoginViewController (UITextField related code)
 
-extension LoginViewController {
+extension LoginViewController: UITextFieldDelegate {
 	
 	// Check if either credential text fields are empty
 	private func textFieldsEmpty() -> Bool {
@@ -114,6 +114,11 @@ extension LoginViewController {
 			displayError("Empty Email or Password.")
 			return false
 		}
+		return true
+	}
+	
+	func textFieldShouldReturn(textField: UITextField) -> Bool {
+		textField.resignFirstResponder()
 		return true
 	}
 }
