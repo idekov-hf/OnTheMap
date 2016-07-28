@@ -133,14 +133,17 @@ extension MapViewController: MKMapViewDelegate {
 	}
 }
 
+// MARK: - MapViewController (InformationPostingControllerDelegate)
+
 extension MapViewController: InformationPostingControllerDelegate {
 	
 	func refreshData() {
+		
 		downloadStudentInformation()
 	}
 }
 
-// MARK: TabViewControllersDelegate
+// MARK: - TabViewControllersDelegate Protocol
 
 protocol TabViewControllersDelegate: class {
 	func dismissTabBarController()

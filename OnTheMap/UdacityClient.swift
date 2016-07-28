@@ -14,13 +14,10 @@ class UdacityClient: NSObject {
     
     // MARK: Properties
     
-    // shared session
+    // Shared session
     var session = NSURLSession.sharedSession()
-    
-    // authentication state
+	
     var sessionID: String? = nil
-    
-    // Properties
     var accountID: String? = nil
     var firstName: String? = nil
     var lastName: String? = nil
@@ -93,7 +90,7 @@ class UdacityClient: NSObject {
         task.resume()
     }
 	
-	// MARK: Helper Methods
+	// MARK: Helper
 	
 	func checkAndExtractDataWithCompletionHandler(data: NSData?, response: NSURLResponse?, error: NSError?, completionHandlerForDataExtraction: (result: AnyObject!, error: NSError?) -> Void) {
 		

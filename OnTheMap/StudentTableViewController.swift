@@ -22,7 +22,7 @@ class StudentTableViewController: UIViewController {
 	
 	weak var delegate: TabViewControllersDelegate?
 	
-	// MARK: Lifecycle Methods
+	// MARK: Lifecycle
 	
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
@@ -48,7 +48,7 @@ class StudentTableViewController: UIViewController {
 		presentViewController(infoPostingController, animated: true, completion: nil)
 	}
 	
-    // MARK: Helper Methods
+    // MARK: Helper
     
     private func displayError(errorString: String?) {
         
@@ -94,7 +94,6 @@ extension StudentTableViewController: UITableViewDataSource {
 	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-		// TODO: make sure the return statement below works
         return StudentModel.sharedInstance().students?.count ?? 0
 	}
 	

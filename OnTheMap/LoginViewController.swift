@@ -109,11 +109,13 @@ extension LoginViewController: UITextFieldDelegate {
 	
 	// Check if either credential text fields are empty
 	private func textFieldsEmpty() -> Bool {
-		// TODO: Add more conditional cases for when only 1 text field is empty
+
 		if emailTextField.text == "" || passwordTextField.text == "" {
+			
 			displayError("Empty Email or Password.")
 			return false
 		}
+		
 		return true
 	}
 	
@@ -123,7 +125,7 @@ extension LoginViewController: UITextFieldDelegate {
 	}
 }
 
-// MARK: TabViewControllerDelegate (used to dismiss the TabBarController)
+// MARK: - TabViewControllerDelegate (used to dismiss the TabBarController)
 
 extension LoginViewController: TabViewControllersDelegate {
 	

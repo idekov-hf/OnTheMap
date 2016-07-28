@@ -11,7 +11,9 @@ import Foundation
 // MARK: ParseClient (Convenience Methods)
 
 extension ParseClient {
-    
+	
+	// MARK: GET StudentLocation
+	
     func getStudentInformation(completionHandlerForStudentInfo: (error: NSError?) -> Void) {
         
         // Set parameters
@@ -20,7 +22,7 @@ extension ParseClient {
             ParameterKeys.order: ParameterValues.order
         ]
         
-        // Get data
+        // GET data
         taskForGETMethod(parameters) { (result, error) in
             
             if let error = error {

@@ -16,7 +16,7 @@ class StudentModel {
     var students: [StudentInformation]?
 	var annotations: [MKPointAnnotation]?
 	
-	// MARK: Helpers
+	// MARK: Helper
 	
 	static func annotationsFromStudents(students: [StudentInformation]) -> [MKPointAnnotation] {
 		
