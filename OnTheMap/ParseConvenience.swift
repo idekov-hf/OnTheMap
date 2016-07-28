@@ -61,7 +61,6 @@ extension ParseClient {
 				
 			} else {
 				
-				print(result)
 				completionHandlerForStudenInformation(error: nil)
 			}
 		}

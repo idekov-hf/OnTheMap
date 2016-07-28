@@ -18,7 +18,7 @@ extension UdacityClient {
 		
 		getSessionID(email, password: password) { (success, sessionID, accountID, errorString) in
 			if success {
-				print(sessionID)
+				
 				self.sessionID = sessionID
                 self.accountID = accountID
                 
@@ -80,10 +80,7 @@ extension UdacityClient {
 				
 				print(error)
 				
-			} else {
-				
-				print(result)
-			}
+			} 
 		}
 	}
     
@@ -93,7 +90,6 @@ extension UdacityClient {
         
         var method = Methods.GetUserData
         method = method.stringByReplacingOccurrencesOfString("<user_id>", withString: accountID!)
-        print("getPublicUserData method: \(method)")
         
         taskForGETMethod(method) { (result, error) in
             

@@ -70,10 +70,10 @@ class ParseClient {
 		}
 		
 		// Did the response have a successfull status code?
-//		guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode < 300 else {
-//			sendError("Request returned wrong statusCode")
-//			return
-//		}
+		guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode < 300 else {
+			sendError("Request returned wrong statusCode")
+			return
+		}
 		
 		// Was there any data returned?
 		guard let data = data else {

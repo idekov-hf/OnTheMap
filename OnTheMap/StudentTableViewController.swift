@@ -22,6 +22,14 @@ class StudentTableViewController: UIViewController {
 	
 	weak var delegate: TabViewControllersDelegate?
 	
+	// MARK: Lifecycle Methods
+	
+	override func viewWillAppear(animated: Bool) {
+		super.viewWillAppear(animated)
+		
+		tableView.reloadData()
+	}
+	
 	// MARK: Actions
     
 	@IBAction func logoutButtonPressed(sender: UIBarButtonItem) {
@@ -29,22 +37,17 @@ class StudentTableViewController: UIViewController {
 	}
 	
     @IBAction func refreshButtonPressed(sender: UIBarButtonItem) {
-        
-        setUIEnabled(false)
-        
-        ParseClient.sharedInstance().getStudentInformation { (error) in
-            
-            executeBlockOnMainQueue({
-                
-                if error == nil {
-                    
-                    self.tableView.reloadData()
-                    self.setUIEnabled(true)
-                }
-            })
-        }
+		
+		downloadData()
     }
-    
+	
+	@IBAction func pinButtonPressed(sender: UIBarButtonItem) {
+		
+		let infoPostingController = storyboard?.instantiateViewControllerWithIdentifier("InformationPostingViewController") as! InformationPostingViewController
+		infoPostingController.delegate = self
+		presentViewController(infoPostingController, animated: true, completion: nil)
+	}
+	
     // MARK: Helper Methods
     
     private func displayError(errorString: String?) {
@@ -61,6 +64,28 @@ class StudentTableViewController: UIViewController {
         
         refreshButton.enabled = bool
     }
+	
+	func downloadData() {
+		
+		setUIEnabled(false)
+		
+		ParseClient.sharedInstance().getStudentInformation { (error) in
+			
+			executeBlockOnMainQueue({
+				
+				self.setUIEnabled(true)
+				
+				if error == nil {
+					
+					self.tableView.reloadData()
+					
+				} else {
+					
+					self.displayError("Failed to Refresh Data.")
+				}
+			})
+		}
+	}
 }
 
 // MARK: - StudentTableViewController (Table View Data Source Methods)
@@ -101,4 +126,14 @@ extension StudentTableViewController: UITableViewDelegate {
             }
         }
     }
+}
+
+// MARK: - InformationPostingControllerDelegate
+
+extension StudentTableViewController: InformationPostingControllerDelegate {
+	
+	func refreshData() {
+		
+		downloadData()
+	}
 }

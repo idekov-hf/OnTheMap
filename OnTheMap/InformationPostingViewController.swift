@@ -28,6 +28,8 @@ class InformationPostingViewController: UIViewController {
 	
 	var studentInformation = StudentInformation()
 	
+	weak var delegate: InformationPostingControllerDelegate?
+	
 	// MARK: Lifecycle
 	
 	override func viewDidLoad() {
@@ -107,7 +109,9 @@ class InformationPostingViewController: UIViewController {
 						
 					} else {
 						
-						self.dismissViewControllerAnimated(true, completion: nil)
+						self.dismissViewControllerAnimated(true, completion: { 
+							self.delegate?.refreshData()
+						})
 					}
 				})
 			}
@@ -140,4 +144,10 @@ extension InformationPostingViewController: UITextFieldDelegate {
 		textField.resignFirstResponder()
 		return true
 	}
+}
+
+// MARK: - InformationPostingDelegate
+
+protocol InformationPostingControllerDelegate: class {
+	func refreshData()
 }

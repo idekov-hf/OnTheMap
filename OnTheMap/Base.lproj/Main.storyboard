@@ -115,10 +115,15 @@
                                     <outlet property="delegate" destination="Hpk-h6-d09" id="8El-5P-bFT"/>
                                 </connections>
                             </mapView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ell-fD-TpP">
+                                <rect key="frame" x="290" y="290" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="j3f-qv-QlQ" secondAttribute="trailing" id="HsW-td-bj0"/>
+                            <constraint firstItem="ell-fD-TpP" firstAttribute="centerX" secondItem="gJx-Y4-VWg" secondAttribute="centerX" id="OX0-om-eWq"/>
+                            <constraint firstItem="ell-fD-TpP" firstAttribute="centerY" secondItem="gJx-Y4-VWg" secondAttribute="centerY" id="fIn-nI-W22"/>
                             <constraint firstItem="1V4-Kj-EfC" firstAttribute="top" secondItem="j3f-qv-QlQ" secondAttribute="bottom" id="gmb-zu-3Jd"/>
                             <constraint firstItem="j3f-qv-QlQ" firstAttribute="top" secondItem="Hru-JN-rTd" secondAttribute="bottom" id="qOK-WW-Cb0"/>
                             <constraint firstItem="j3f-qv-QlQ" firstAttribute="leading" secondItem="gJx-Y4-VWg" secondAttribute="leading" id="we3-9e-SkM"/>
@@ -138,13 +143,15 @@
                             </barButtonItem>
                             <barButtonItem image="pin" id="wdr-Nd-ZFt">
                                 <connections>
-                                    <segue destination="Fb3-Fs-gs9" kind="presentation" id="u1H-dX-gci"/>
+                                    <action selector="pinButtonPressed:" destination="Hpk-h6-d09" id="Xiw-xA-adZ"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="ell-fD-TpP" id="nXY-Kx-3df"/>
                         <outlet property="mapView" destination="j3f-qv-QlQ" id="CVV-gI-Hwo"/>
+                        <outlet property="refreshButton" destination="6zz-nG-2ZU" id="Tio-d2-9aR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hL3-oW-pse" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -154,7 +161,7 @@
         <!--Information Posting View Controller-->
         <scene sceneID="EAA-zr-r47">
             <objects>
-                <viewController id="Fb3-Fs-gs9" customClass="InformationPostingViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="InformationPostingViewController" id="Fb3-Fs-gs9" customClass="InformationPostingViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="eid-e3-Dxp"/>
                         <viewControllerLayoutGuide type="bottom" id="C2Q-UY-j5O"/>
@@ -383,7 +390,7 @@
                             </barButtonItem>
                             <barButtonItem image="pin" id="6EO-X6-J7Z">
                                 <connections>
-                                    <segue destination="Fb3-Fs-gs9" kind="presentation" id="1WK-Lc-9Io"/>
+                                    <action selector="pinButtonPressed:" destination="cQf-16-ggs" id="A6P-Uv-Sen"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
@@ -460,7 +467,4 @@
         <image name="map" width="32" height="32"/>
         <image name="pin" width="32" height="32"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="1WK-Lc-9Io"/>
-    </inferredMetricsTieBreakers>
 </document>

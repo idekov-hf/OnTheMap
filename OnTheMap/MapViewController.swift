@@ -14,27 +14,21 @@ import MapKit
 class MapViewController: UIViewController {
 	
 	// MARK: Outlets
+	
 	@IBOutlet var mapView: MKMapView!
+	@IBOutlet var activityIndicator: UIActivityIndicatorView!
+	@IBOutlet var refreshButton: UIBarButtonItem!
 	
 	// MARK: Properties
+	
 	weak var delegate: TabViewControllersDelegate?
 	
 	// MARK: Lifecycle Methods
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		ParseClient.sharedInstance().getStudentInformation { (error) in
-			
-			executeBlockOnMainQueue {
-				if error == nil {
-                    self.mapView.addAnnotations(StudentModel.sharedInstance().annotations!)
-					
-				} else {
-					
-					self.displayError("Download of Data Failed.")
-				}
-			}
-		}
+		downloadStudentInformation()
 	}
 	
 	// MARK: Actions
@@ -44,14 +38,50 @@ class MapViewController: UIViewController {
 	}
     
     @IBAction func refreshButtonPressed(sender: UIBarButtonItem) {
-        
-        mapView.removeAnnotations(mapView.annotations)
-        
-        
+		
+		downloadStudentInformation()
     }
-    
+	
+	@IBAction func pinButtonPressed(sender: UIBarButtonItem) {
+		
+		let infoPostingController = storyboard?.instantiateViewControllerWithIdentifier("InformationPostingViewController") as! InformationPostingViewController
+		infoPostingController.delegate = self
+		presentViewController(infoPostingController, animated: true, completion: nil)
+	}
+	
 	
 	// MARK: Helper Methods
+	
+	private func downloadStudentInformation() {
+		
+		setUIEnabled(false)
+		
+		mapView.removeAnnotations(mapView.annotations)
+		
+		ParseClient.sharedInstance().getStudentInformation { (error) in
+			
+			executeBlockOnMainQueue {
+				
+				self.setUIEnabled(true)
+				
+				if error == nil {
+					
+					self.mapView.addAnnotations(StudentModel.sharedInstance().annotations!)
+					
+				} else {
+					
+					self.displayError("Download of Data Failed.")
+				}
+			}
+		}
+	}
+	
+	func setUIEnabled(bool: Bool) {
+		
+		bool ? activityIndicator.stopAnimating() : activityIndicator.startAnimating()
+		
+		refreshButton.enabled = bool
+	}
 	
 	private func displayError(errorString: String?) {
 		
@@ -100,6 +130,13 @@ extension MapViewController: MKMapViewDelegate {
 				app.openURL(url)
 			}
 		}
+	}
+}
+
+extension MapViewController: InformationPostingControllerDelegate {
+	
+	func refreshData() {
+		downloadStudentInformation()
 	}
 }
 
