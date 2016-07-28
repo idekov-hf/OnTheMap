@@ -15,26 +15,52 @@ class StudentTableViewController: UIViewController {
 	// MARK: Outlets
 	
 	@IBOutlet var tableView: UITableView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var refreshButton: UIBarButtonItem!
 	
 	// MARK: Fields
 	
 	weak var delegate: TabViewControllersDelegate?
 	
-	// MARK: Helper Methods
-	
-	private func displayError(errorString: String?) {
-		
-		let alertController = UIAlertController(title: nil, message: errorString, preferredStyle: .Alert)
-		let defaultAction = UIAlertAction(title: "Dismiss", style: .Default, handler: nil)
-		alertController.addAction(defaultAction)
-		presentViewController(alertController, animated: true, completion: nil)
-	}
-	
 	// MARK: Actions
+    
 	@IBAction func logoutButtonPressed(sender: UIBarButtonItem) {
 		delegate?.dismissTabBarController()
 	}
 	
+    @IBAction func refreshButtonPressed(sender: UIBarButtonItem) {
+        
+        setUIEnabled(false)
+        
+        ParseClient.sharedInstance().getStudentInformation { (error) in
+            
+            executeBlockOnMainQueue({
+                
+                if error == nil {
+                    
+                    self.tableView.reloadData()
+                    self.setUIEnabled(true)
+                }
+            })
+        }
+    }
+    
+    // MARK: Helper Methods
+    
+    private func displayError(errorString: String?) {
+        
+        let alertController = UIAlertController(title: nil, message: errorString, preferredStyle: .Alert)
+        let defaultAction = UIAlertAction(title: "Dismiss", style: .Default, handler: nil)
+        alertController.addAction(defaultAction)
+        presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    func setUIEnabled(bool: Bool) {
+        
+        bool ? activityIndicator.stopAnimating() : activityIndicator.startAnimating()
+        
+        refreshButton.enabled = bool
+    }
 }
 
 // MARK: - StudentTableViewController (Table View Data Source Methods)

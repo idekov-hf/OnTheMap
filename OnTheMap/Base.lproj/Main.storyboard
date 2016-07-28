@@ -131,7 +131,11 @@
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
-                            <barButtonItem title="Refresh" id="6zz-nG-2ZU"/>
+                            <barButtonItem title="Refresh" id="6zz-nG-2ZU">
+                                <connections>
+                                    <action selector="refreshButtonPressed:" destination="Hpk-h6-d09" id="fPr-q7-Ru1"/>
+                                </connections>
+                            </barButtonItem>
                             <barButtonItem image="pin" id="wdr-Nd-ZFt">
                                 <connections>
                                     <segue destination="Fb3-Fs-gs9" kind="presentation" id="u1H-dX-gci"/>
@@ -351,13 +355,18 @@
                                     <outlet property="delegate" destination="cQf-16-ggs" id="lW3-32-GOU"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="KWm-p3-cRZ">
+                                <rect key="frame" x="290" y="290" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="KWm-p3-cRZ" firstAttribute="centerX" secondItem="N4r-cx-jCp" secondAttribute="centerX" id="8O5-wo-6cF"/>
                             <constraint firstItem="RRl-NV-gvd" firstAttribute="top" secondItem="aB3-Q1-Xls" secondAttribute="bottom" id="FoT-IU-Zpp"/>
                             <constraint firstItem="aB3-Q1-Xls" firstAttribute="top" secondItem="NgR-Zi-977" secondAttribute="bottom" id="Tma-sy-DDl"/>
                             <constraint firstAttribute="trailing" secondItem="aB3-Q1-Xls" secondAttribute="trailing" id="Zxl-vW-eBW"/>
                             <constraint firstItem="aB3-Q1-Xls" firstAttribute="leading" secondItem="N4r-cx-jCp" secondAttribute="leading" id="iui-le-9fw"/>
+                            <constraint firstItem="KWm-p3-cRZ" firstAttribute="centerY" secondItem="N4r-cx-jCp" secondAttribute="centerY" id="t89-d3-qin"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="On The Map" id="Plw-KQ-nhg">
@@ -367,7 +376,11 @@
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
-                            <barButtonItem title="Refresh" id="Vxm-wd-rJ7"/>
+                            <barButtonItem title="Refresh" id="Vxm-wd-rJ7">
+                                <connections>
+                                    <action selector="refreshButtonPressed:" destination="cQf-16-ggs" id="sTG-Ur-nYd"/>
+                                </connections>
+                            </barButtonItem>
                             <barButtonItem image="pin" id="6EO-X6-J7Z">
                                 <connections>
                                     <segue destination="Fb3-Fs-gs9" kind="presentation" id="1WK-Lc-9Io"/>
@@ -376,6 +389,8 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="KWm-p3-cRZ" id="Rqz-Ro-AOr"/>
+                        <outlet property="refreshButton" destination="Vxm-wd-rJ7" id="876-Xu-GPL"/>
                         <outlet property="tableView" destination="aB3-Q1-Xls" id="LWm-bp-UfO"/>
                     </connections>
                 </viewController>

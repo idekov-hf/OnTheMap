@@ -27,8 +27,7 @@ class MapViewController: UIViewController {
 			
 			executeBlockOnMainQueue {
 				if error == nil {
-					
-					self.mapView.addAnnotations(StudentModel.sharedInstance().annotations!)
+                    self.mapView.addAnnotations(StudentModel.sharedInstance().annotations!)
 					
 				} else {
 					
@@ -43,6 +42,14 @@ class MapViewController: UIViewController {
 	@IBAction func logoutButtonPressed(sender: UIBarButtonItem) {
 		delegate?.dismissTabBarController()
 	}
+    
+    @IBAction func refreshButtonPressed(sender: UIBarButtonItem) {
+        
+        mapView.removeAnnotations(mapView.annotations)
+        
+        
+    }
+    
 	
 	// MARK: Helper Methods
 	
@@ -89,8 +96,8 @@ extension MapViewController: MKMapViewDelegate {
 	func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
 		if control == view.rightCalloutAccessoryView {
 			let app = UIApplication.sharedApplication()
-			if let toOpen = view.annotation?.subtitle! {
-				app.openURL(NSURL(string: toOpen)!)
+            if let toOpen = view.annotation?.subtitle!, url = NSURL(string: toOpen) {
+				app.openURL(url)
 			}
 		}
 	}
