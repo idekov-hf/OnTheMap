@@ -32,10 +32,12 @@ class InformationPostingViewController: UIViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-
-		self.studentInformation.firstName = ""
-		self.studentInformation.lastName = ""
-		self.studentInformation.uniqueKey = ""
+        
+        let udacityInstance = UdacityClient.sharedInstance()
+        
+		self.studentInformation.firstName = udacityInstance.firstName!
+		self.studentInformation.lastName = udacityInstance.lastName!
+		self.studentInformation.uniqueKey = udacityInstance.accountID!
 	}
     
     // MARK: Actions

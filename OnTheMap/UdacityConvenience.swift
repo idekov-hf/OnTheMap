@@ -16,10 +16,14 @@ extension UdacityClient {
 	
 	func authenticateWithCredentials(email: String, password: String, completionHandlerForAuth: (success: Bool, error: String?) -> Void) {
 		
-		getSessionID(email, password: password) { (success, sessionID, errorString) in
+		getSessionID(email, password: password) { (success, sessionID, accountID, errorString) in
 			if success {
 				print(sessionID)
 				self.sessionID = sessionID
+                self.accountID = accountID
+                
+                // Get user first name and last name after getting accountID
+                self.getPublicUserData()
 			}
 			
 			completionHandlerForAuth(success: success, error: "Invalid Email or Password.")
@@ -28,7 +32,7 @@ extension UdacityClient {
 	
 	// MARK: Get Session ID Method (used when logging in)
 	
-	private func getSessionID(email: String, password: String, completionHandlerForSession: (success: Bool, sessionID: String?, errorString: String?) -> Void) {
+    private func getSessionID(email: String, password: String, completionHandlerForSession: (success: Bool, sessionID: String?, accountID: String?, errorString: String?) -> Void) {
 		
 		let jsonBody = "{\"udacity\": {\"username\": \"\(email)\", \"password\": \"\(password)\"}}"
 		
@@ -37,18 +41,28 @@ extension UdacityClient {
 			
 			// Send the desired value(s) to completion handler
 			if let error = error {
+                
 				print(error)
-				completionHandlerForSession(success: false, sessionID: nil, errorString: "Login Failed (Session ID).")
+				completionHandlerForSession(success: false, sessionID: nil, accountID: nil, errorString: "Login Failed (Session ID).")
+                
 			} else {
+                
 				guard let sessionDictionary = results[JSONResponseKeys.Session] as? [String: AnyObject] else {
 					print("Could not find key \(JSONResponseKeys.Session) in \(results)")
 					return
 				}
-				if let sessionID = sessionDictionary[JSONResponseKeys.SessionID] as? String {
-					completionHandlerForSession(success: true, sessionID: sessionID, errorString: nil)
+                
+                guard let accountDictionary = results[JSONResponseKeys.Account] as? [String: AnyObject] else {
+                    print("Could not find key \(JSONResponseKeys.Session) in \(results)")
+                    return
+                }
+                
+				if let sessionID = sessionDictionary[JSONResponseKeys.SessionID] as? String, accountID = accountDictionary[JSONResponseKeys.AccountKey] as? String {
+					completionHandlerForSession(success: true, sessionID: sessionID, accountID: accountID, errorString: nil)
+                    
 				} else {
 					print("Could not find \(JSONResponseKeys.SessionID) in \(results)")
-					completionHandlerForSession(success: false, sessionID: nil, errorString: "Login Failed (Session ID).")
+					completionHandlerForSession(success: false, sessionID: nil, accountID: nil, errorString: "Login Failed (Session ID).")
 				}
 			}
 		}
@@ -72,4 +86,34 @@ extension UdacityClient {
 			}
 		}
 	}
+    
+    // MARK: GET Public User Data
+    
+    func getPublicUserData() {
+        
+        var method = Methods.GetUserData
+        method = method.stringByReplacingOccurrencesOfString("<user_id>", withString: accountID!)
+        print("getPublicUserData method: \(method)")
+        
+        taskForGETMethod(method) { (result, error) in
+            
+            guard let userDictionary = result[JSONResponseKeys.User] as? [String: AnyObject] else {
+                print("Failed to make userDictionary")
+                return
+            }
+            
+            if let firstName = userDictionary[JSONResponseKeys.FirstName] as? String, lastName = userDictionary[JSONResponseKeys.LastName] as? String {
+                
+                self.firstName = firstName
+                self.lastName = lastName
+                
+                print("First Name: \(self.firstName)\nLast Name: \(self.lastName)\nAccount ID: \(self.accountID)")
+                
+            } else {
+                
+                print("Failed to get FirstName and LastName")
+            }
+        }
+        
+    }
 }

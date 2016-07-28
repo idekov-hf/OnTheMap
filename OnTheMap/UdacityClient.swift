@@ -20,6 +20,11 @@ class UdacityClient: NSObject {
     // authentication state
     var sessionID: String? = nil
     
+    // Properties
+    var accountID: String? = nil
+    var firstName: String? = nil
+    var lastName: String? = nil
+    
     // MARK: Initializers
     
     override init() {
@@ -73,6 +78,20 @@ class UdacityClient: NSObject {
 		
 		task.resume()
 	}
+    
+    // MARK: GET
+    
+    func taskForGETMethod(method: String, completionHandlerForGET: (result: AnyObject!, error: NSError?) -> Void) {
+        
+        let request = NSMutableURLRequest(URL: NSURL(string: method)!)
+        
+        let task = session.dataTaskWithRequest(request) { (data, response, error) in
+            
+            self.checkAndExtractDataWithCompletionHandler(data, response: response, error: error, completionHandlerForDataExtraction: completionHandlerForGET)
+        }
+        
+        task.resume()
+    }
 	
 	// MARK: Helper Methods
 	
@@ -109,6 +128,7 @@ class UdacityClient: NSObject {
 		// Parse the data and use the data (happens in completion handler)
 		self.convertDataWithCompletionHandler(newData, completionHandlerForConvertData: completionHandlerForDataExtraction)
 	}
+    
 	
 	// given raw JSON, return a usable Foundation object
 	// Method taken from TheMovieManager app from the Udacity course iOS Networking With Swift

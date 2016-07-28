@@ -151,8 +151,8 @@
 		5D0514EC1D41D0A1000BDFE2 /* Parse */ = {
 			isa = PBXGroup;
 			children = (
-				5D78F8D41D439C780073B5CA /* ParseConstants.swift */,
 				5D78F8D61D439C8A0073B5CA /* ParseClient.swift */,
+				5D78F8D41D439C780073B5CA /* ParseConstants.swift */,
 				5D78F8D81D439FE00073B5CA /* ParseConvenience.swift */,
 			);
 			name = Parse;

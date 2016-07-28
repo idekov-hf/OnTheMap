@@ -20,8 +20,8 @@ struct StudentInformation {
 	
 	// Properties used for uploading student locations
 	
-	var uniqueKey: String?
-	var mapString: String?
+	var uniqueKey: String
+	var mapString: String
     
     // MARK: Initializers
     
@@ -32,6 +32,8 @@ struct StudentInformation {
         latitude = dictionary[ParseClient.ParseKeys.Latitude] as! Double
         longitude = dictionary[ParseClient.ParseKeys.Longitude] as! Double
         mediaURL = dictionary[ParseClient.ParseKeys.MediaURL] as! String
+        uniqueKey = ""
+        mapString = ""
     }
 	
 	init() {
@@ -40,6 +42,8 @@ struct StudentInformation {
 		latitude = Double()
 		longitude = Double()
 		mediaURL = String()
+        uniqueKey = String()
+        mapString = String()
 	}
     
     // Mark: Helpers
