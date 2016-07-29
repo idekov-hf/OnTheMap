@@ -94,6 +94,7 @@ extension UdacityClient {
         taskForGETMethod(method) { (result, error) in
             
             guard let userDictionary = result[JSONResponseKeys.User] as? [String: AnyObject] else {
+                
                 print("Failed to make userDictionary")
                 return
             }
@@ -102,14 +103,7 @@ extension UdacityClient {
                 
                 self.firstName = firstName
                 self.lastName = lastName
-                
-                print("First Name: \(self.firstName)\nLast Name: \(self.lastName)\nAccount ID: \(self.accountID)")
-                
-            } else {
-                
-                print("Failed to get FirstName and LastName")
             }
         }
-        
     }
 }
