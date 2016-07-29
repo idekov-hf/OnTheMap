@@ -82,14 +82,6 @@ class MapViewController: UIViewController {
 		
 		refreshButton.enabled = bool
 	}
-	
-	private func displayError(errorString: String?) {
-		
-		let alertController = UIAlertController(title: nil, message: errorString, preferredStyle: .Alert)
-		let defaultAction = UIAlertAction(title: "Dismiss", style: .Default, handler: nil)
-		alertController.addAction(defaultAction)
-		presentViewController(alertController, animated: true, completion: nil)
-	}
 }
 
 // MARK: - MKMapViewDelegate

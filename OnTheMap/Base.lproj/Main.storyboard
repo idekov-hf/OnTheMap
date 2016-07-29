@@ -304,6 +304,7 @@
                     </view>
                     <connections>
                         <outlet property="activityIndicator" destination="1P3-Ib-1P2" id="O8V-2W-4SF"/>
+                        <outlet property="findOnMapButton" destination="g0d-21-O7D" id="Py4-9u-Smn"/>
                         <outlet property="firstView" destination="PwH-Qc-8Vt" id="8Eg-Sg-Tqm"/>
                         <outlet property="linkTextField" destination="wEy-8A-WG9" id="e85-co-mAT"/>
                         <outlet property="locationTextField" destination="lC8-3k-A8R" id="vVL-N2-JdB"/>

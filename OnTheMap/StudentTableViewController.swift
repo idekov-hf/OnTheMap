@@ -50,14 +50,6 @@ class StudentTableViewController: UIViewController {
 	
     // MARK: Helper
     
-    private func displayError(errorString: String?) {
-        
-        let alertController = UIAlertController(title: nil, message: errorString, preferredStyle: .Alert)
-        let defaultAction = UIAlertAction(title: "Dismiss", style: .Default, handler: nil)
-        alertController.addAction(defaultAction)
-        presentViewController(alertController, animated: true, completion: nil)
-    }
-    
     func setUIEnabled(bool: Bool) {
         
         bool ? activityIndicator.stopAnimating() : activityIndicator.startAnimating()

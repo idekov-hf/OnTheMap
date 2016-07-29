@@ -92,15 +92,6 @@ extension LoginViewController {
 		// Adjust login button alpha
 		loginButton.alpha = enabled ? 1.0 : 0.5
 	}
-	
-	private func displayError(errorString: String?) {
-		
-		let alertController = UIAlertController(title: nil, message: errorString, preferredStyle: .Alert)
-		let defaultAction = UIAlertAction(title: "Dismiss", style: .Default, handler: nil)
-		alertController.addAction(defaultAction)
-		presentViewController(alertController, animated: true, completion: nil)
-	}
-	
 }
 
 // MARK: - LoginViewController (UITextField related code)
@@ -133,4 +124,16 @@ extension LoginViewController: TabViewControllersDelegate {
 		UdacityClient.sharedInstance().deleteSessionID()
 		mainTabBarController?.dismissViewControllerAnimated(true, completion: nil)
 	}
+}
+
+// MARK: - Extension of UIViewController that displays a popup with an error message
+extension UIViewController {
+    
+    func displayError(errorString: String?) {
+        
+        let alertController = UIAlertController(title: nil, message: errorString, preferredStyle: .Alert)
+        let defaultAction = UIAlertAction(title: "Dismiss", style: .Default, handler: nil)
+        alertController.addAction(defaultAction)
+        presentViewController(alertController, animated: true, completion: nil)
+    }
 }

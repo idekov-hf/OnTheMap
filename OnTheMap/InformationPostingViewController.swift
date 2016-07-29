@@ -21,6 +21,7 @@ class InformationPostingViewController: UIViewController {
     @IBOutlet weak var locationTextField: UITextField!
     @IBOutlet weak var linkTextField: UITextField!
 	@IBOutlet var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var findOnMapButton: UIButton!
 	@IBOutlet var submitLinkButton: UIButton!
 	
 	
@@ -51,22 +52,24 @@ class InformationPostingViewController: UIViewController {
 	
     @IBAction func findOnMapButtonPressed(sender: UIButton) {
 		
+        // Disable the UI while app is geocoding
+        setUIEnabled(false)
+        
 		guard let locationText = locationTextField.text where locationText != "" else {
 			displayError("Must Enter a Location.")
 			return
 		}
 		
 		studentInformation.mapString = locationText
-		
-        firstView.hidden = true
         
         let geocoder = CLGeocoder()
         geocoder.geocodeAddressString(locationText) { (placemark, error) in
 			
-            if let error = error {
+            self.setUIEnabled(true)
+            
+            if error != nil {
                 
-                print(error)
-				self.displayError("Location not Found; Please Try Again.")
+				self.displayError("Location not Found. Please Try Again.")
                 
             } else {
 				
@@ -79,6 +82,8 @@ class InformationPostingViewController: UIViewController {
                 let annotation = MKPointAnnotation()
                 annotation.coordinate = coordinate
                 annotations.append(annotation)
+                
+                self.firstView.hidden = true
                 
                 self.mapView.showAnnotations(annotations, animated: true)
             }
@@ -120,19 +125,13 @@ class InformationPostingViewController: UIViewController {
 	
 	// MARK: Helper Methods
 	
-	private func displayError(errorString: String?) {
-		
-		let alertController = UIAlertController(title: nil, message: errorString, preferredStyle: .Alert)
-		let defaultAction = UIAlertAction(title: "Dismiss", style: .Default, handler: nil)
-		alertController.addAction(defaultAction)
-		presentViewController(alertController, animated: true, completion: nil)
-	}
-	
 	func setUIEnabled(bool: Bool) {
 		
 		bool ? activityIndicator.stopAnimating() : activityIndicator.startAnimating()
 		
 		submitLinkButton.enabled = bool
+        
+        findOnMapButton.enabled = bool
 	}
 }
 
