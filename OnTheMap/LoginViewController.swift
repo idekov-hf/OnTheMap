@@ -27,7 +27,6 @@ class LoginViewController: UIViewController {
 		
 		// Check if either the email or password text fields are empty
 		guard textFieldsEmpty() else {
-			print("Text fields are emtpy")
 			return
 		}
 		

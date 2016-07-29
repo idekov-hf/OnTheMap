@@ -15,7 +15,7 @@ extension UdacityClient {
 	// MARK: Authentication Method
 	
 	func authenticateWithCredentials(email: String, password: String, completionHandlerForAuth: (success: Bool, error: String?) -> Void) {
-		
+				
 		getSessionID(email, password: password) { (success, sessionID, accountID, errorString) in
 			if success {
 				
@@ -26,7 +26,7 @@ extension UdacityClient {
                 self.getPublicUserData()
 			}
 			
-			completionHandlerForAuth(success: success, error: "Invalid Email or Password.")
+			completionHandlerForAuth(success: success, error: errorString)
 		}
 	}
 	
@@ -41,10 +41,16 @@ extension UdacityClient {
 			
 			// Send the desired value(s) to completion handler
 			if let error = error {
-                
-				print(error)
-				completionHandlerForSession(success: false, sessionID: nil, accountID: nil, errorString: "Login Failed (Session ID).")
-                
+				
+				if error.code == -1009 {
+					
+					completionHandlerForSession(success: false, sessionID: nil, accountID: nil, errorString: "Internet Connection is Offline.")
+					
+				} else {
+				
+					completionHandlerForSession(success: false, sessionID: nil, accountID: nil, errorString: "Invalid Username or Password.")
+				}
+				
 			} else {
                 
 				guard let sessionDictionary = results[JSONResponseKeys.Session] as? [String: AnyObject] else {

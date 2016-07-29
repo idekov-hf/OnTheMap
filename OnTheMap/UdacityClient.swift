@@ -95,15 +95,23 @@ class UdacityClient: NSObject {
 	func checkAndExtractDataWithCompletionHandler(data: NSData?, response: NSURLResponse?, error: NSError?, completionHandlerForDataExtraction: (result: AnyObject!, error: NSError?) -> Void) {
 		
 		// Used for handling errors
-		func sendError(error: String) {
-			print(error)
-			let userInfo = [NSLocalizedDescriptionKey : error]
-			completionHandlerForDataExtraction(result: nil, error: NSError(domain: "UdacityClient", code: 1, userInfo: userInfo))
+		func sendError(errorString: String, error: NSError? = nil) {
+			
+			let userInfo = [NSLocalizedDescriptionKey : errorString]
+			
+			if let error = error {
+				
+				completionHandlerForDataExtraction(result: nil, error: error)
+				
+			} else {
+				
+				completionHandlerForDataExtraction(result: nil, error: NSError(domain: "UdacityClient", code: 1, userInfo: userInfo))
+			}
 		}
 		
 		// Was there an error?
 		guard error == nil else {
-			sendError("There was an error with your request: \(error)")
+			sendError("There was an error with your request: \(error)", error: error)
 			return
 		}
 		
